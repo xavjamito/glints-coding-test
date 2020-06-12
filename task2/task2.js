@@ -12,10 +12,10 @@ const text = fs.readFileSync(inputFile, 'utf-8');
 const jobs = [];
 const candidates = [];
 text.split('\n').forEach(line => {
-  if(line.length < 1) {
+  if(line.trim().length < 1) {
     return;
   }
-  const rankings = line.substring(4).split(' ').map(rank => Number.parseInt(rank.substring(1)-1));
+  const rankings = line.substring(line.indexOf(':')+2).split(' ').map(rank => Number.parseInt(rank.substring(1)-1));
   if(line.startsWith('j')){
     jobs.push(rankings)
   } else {
